@@ -1,0 +1,742 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-primary-glow: var(--primary-glow);
+  --color-brand-cyan: var(--brand-cyan);
+  --font-display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.99 0.005 280);
+  --foreground: oklch(0.18 0.05 265);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.05 265);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.05 265);
+  --primary: oklch(0.55 0.22 295);
+  --primary-foreground: oklch(0.99 0 0);
+  --primary-glow: oklch(0.7 0.2 295);
+  --brand-cyan: oklch(0.72 0.15 230);
+  --secondary: oklch(0.96 0.02 280);
+  --secondary-foreground: oklch(0.25 0.06 265);
+  --muted: oklch(0.96 0.015 270);
+  --muted-foreground: oklch(0.5 0.04 265);
+  --accent: oklch(0.95 0.04 295);
+  --accent-foreground: oklch(0.35 0.15 295);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.92 0.015 270);
+  --input: oklch(0.92 0.015 270);
+  --ring: oklch(0.55 0.22 295);
+  --gradient-brand: linear-gradient(135deg, oklch(0.62 0.22 300), oklch(0.72 0.15 230));
+  --gradient-brand-soft: linear-gradient(135deg, oklch(0.97 0.035 300), oklch(0.975 0.03 230));
+  /* Layered, low-opacity, brand-tinted shadows = premium depth without harshness */
+  --shadow-xs: 0 1px 2px oklch(0.45 0.08 285 / 0.06);
+  --shadow-soft: 0 1px 2px oklch(0.45 0.08 285 / 0.05), 0 2px 8px -3px oklch(0.45 0.08 285 / 0.07);
+  --shadow-card: 0 1px 2px oklch(0.45 0.08 285 / 0.04), 0 6px 20px -8px oklch(0.5 0.12 290 / 0.13);
+  --shadow-md: 0 2px 4px oklch(0.45 0.08 285 / 0.05), 0 12px 28px -10px oklch(0.5 0.12 290 / 0.18);
+  --shadow-lg: 0 4px 10px oklch(0.45 0.08 285 / 0.06), 0 24px 48px -16px oklch(0.5 0.13 290 / 0.22);
+  --shadow-ring: 0 0 0 1px oklch(0.5 0.12 290 / 0.06);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.965 0.008 286);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.93 0.012 286);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.9 0.012 286);
+  --sidebar-ring: oklch(0.704 0.04 256.788);
+}
+
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.929 0.013 255.508);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.551 0.027 264.364);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  /* Refined, unobtrusive scrollbars for a premium feel */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: oklch(0.86 0.02 285) transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(0.86 0.02 285);
+    border-radius: 9999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.78 0.03 285);
+    background-clip: content-box;
+  }
+}
+
+@layer utilities {
+  /* Dashboard canvas: near-white with two faint brand-tinted glows for subtle depth */
+  .app-canvas {
+    background-color: oklch(0.986 0.006 285);
+    background-image:
+      radial-gradient(58rem 40rem at 85% -12%, oklch(0.6 0.18 297 / 0.07), transparent 60%),
+      radial-gradient(46rem 30rem at -8% 4%, oklch(0.72 0.15 230 / 0.06), transparent 58%);
+    background-attachment: fixed;
+  }
+
+  /* Brand gradient clipped to text */
+  .text-gradient-brand {
+    background-image: var(--gradient-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .bg-gradient-brand {
+    background-image: var(--gradient-brand);
+  }
+
+  .bg-gradient-brand-soft {
+    background-image: var(--gradient-brand-soft);
+  }
+
+  /* Hairline ring used on premium cards */
+  .ring-hairline {
+    box-shadow: var(--shadow-ring);
+  }
+
+  /* Subtle dotted texture for hero/banner surfaces */
+  .bg-dots {
+    background-image: radial-gradient(oklch(0.5 0.12 290 / 0.09) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+}
+
+.varsity-chat {
+  --chat-ink: var(--foreground);
+  --chat-primary: var(--primary);
+  --chat-cyan: var(--brand-cyan);
+  --chat-line: var(--border);
+  --chat-muted: var(--muted-foreground);
+  position: fixed;
+  z-index: 70;
+  right: 24px;
+  bottom: 24px;
+  font-family: var(--font-sans);
+}
+
+.varsity-chat__panel {
+  position: absolute;
+  right: 0;
+  bottom: 76px;
+  display: flex;
+  width: min(390px, calc(100vw - 32px));
+  height: min(590px, calc(100dvh - 116px));
+  min-height: 390px;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--chat-line);
+  border-radius: 14px;
+  background: var(--card);
+  box-shadow:
+    0 18px 60px oklch(0.18 0.05 265 / 0.22),
+    0 2px 8px oklch(0.18 0.05 265 / 0.08);
+  animation: varsity-chat-enter 180ms ease-out both;
+}
+
+.varsity-chat__header {
+  display: flex;
+  min-height: 78px;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 17px;
+  background: var(--chat-ink);
+  color: white;
+}
+
+.varsity-chat__brand-mark {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--chat-cyan);
+  color: var(--chat-ink);
+}
+
+.varsity-chat__heading {
+  min-width: 0;
+  flex: 1;
+}
+
+.varsity-chat__heading h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.varsity-chat__heading span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  color: var(--primary-foreground);
+  opacity: 0.82;
+  font-size: 11px;
+}
+
+.varsity-chat__heading span i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--chat-cyan);
+}
+
+.varsity-chat__icon-button {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+.varsity-chat__icon-button:hover {
+  background: oklch(1 0 0 / 0.12);
+}
+
+.varsity-chat__messages {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 15px;
+  overflow-y: auto;
+  padding: 22px 18px 18px;
+  background-color: var(--background);
+  background-image: radial-gradient(color-mix(in oklab, var(--primary) 10%, transparent) 0.7px, transparent 0.7px);
+  background-size: 13px 13px;
+}
+
+.varsity-chat__date-label,
+.varsity-chat__suggestions > span {
+  color: var(--chat-muted);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.varsity-chat__date-label {
+  align-self: center;
+  margin-bottom: 2px;
+}
+
+.varsity-chat__message {
+  display: flex;
+  max-width: 100%;
+  min-width: 0;
+  align-items: flex-end;
+  gap: 7px;
+  animation: varsity-chat-enter 160ms ease-out both;
+}
+
+.varsity-chat__message--user {
+  max-width: 92%;
+  align-self: flex-end;
+}
+
+.varsity-chat__message--user p,
+.varsity-chat__message--assistant > p,
+.varsity-chat__markdown {
+  margin: 0;
+  padding: 11px 13px;
+  border: 1px solid var(--chat-line);
+  border-radius: 4px 14px 14px 14px;
+  background: var(--card);
+  color: var(--chat-ink);
+  font-size: 13px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.varsity-chat__markdown {
+  min-width: 0;
+  max-width: calc(100% - 32px);
+}
+
+.varsity-chat__markdown > :first-child {
+  margin-top: 0;
+}
+
+.varsity-chat__markdown > :last-child {
+  margin-bottom: 0;
+}
+
+.varsity-chat__markdown p {
+  margin: 0 0 10px;
+}
+
+.varsity-chat__markdown h1,
+.varsity-chat__markdown h2,
+.varsity-chat__markdown h3,
+.varsity-chat__markdown h4 {
+  margin: 14px 0 7px;
+  color: var(--foreground);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.35;
+}
+
+.varsity-chat__markdown ul,
+.varsity-chat__markdown ol {
+  margin: 7px 0 11px;
+  padding-left: 21px;
+}
+
+.varsity-chat__markdown ul {
+  list-style: disc;
+}
+
+.varsity-chat__markdown ol {
+  list-style: decimal;
+}
+
+.varsity-chat__markdown li + li {
+  margin-top: 4px;
+}
+
+.varsity-chat__markdown strong {
+  color: var(--foreground);
+  font-weight: 700;
+}
+
+.varsity-chat__markdown a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--primary) 45%, transparent);
+  text-underline-offset: 2px;
+}
+
+.varsity-chat__markdown blockquote {
+  margin: 10px 0;
+  padding: 2px 0 2px 11px;
+  border-left: 3px solid var(--brand-cyan);
+  color: var(--muted-foreground);
+}
+
+.varsity-chat__markdown code {
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: var(--muted);
+  font-size: 0.9em;
+}
+
+.varsity-chat__markdown pre {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 10px;
+  border-radius: 7px;
+  background: var(--muted);
+}
+
+.varsity-chat__markdown pre code {
+  padding: 0;
+  background: transparent;
+}
+
+.varsity-chat__table-wrap {
+  max-width: 100%;
+  margin: 10px 0 12px;
+  overflow-x: auto;
+  border: 1px solid var(--chat-line);
+  border-radius: 7px;
+  overscroll-behavior-x: contain;
+}
+
+.varsity-chat__table-wrap table {
+  width: 100%;
+  min-width: 470px;
+  border-collapse: collapse;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.varsity-chat__table-wrap th,
+.varsity-chat__table-wrap td {
+  padding: 7px 9px;
+  border-bottom: 1px solid var(--chat-line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.varsity-chat__table-wrap th {
+  background: var(--accent);
+  color: var(--foreground);
+  font-weight: 700;
+}
+
+.varsity-chat__table-wrap tr:last-child td {
+  border-bottom: 0;
+}
+
+.varsity-chat__message--user p {
+  border-color: var(--chat-primary);
+  border-radius: 14px 4px 14px 14px;
+  background: var(--chat-primary);
+  color: var(--primary-foreground);
+}
+
+.varsity-chat__avatar {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--chat-lime);
+  color: var(--chat-ink);
+}
+
+.varsity-chat__suggestions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+  margin: 0 0 0 32px;
+}
+
+.varsity-chat__suggestions > span {
+  margin-bottom: 2px;
+}
+
+.varsity-chat__suggestions button {
+  max-width: 100%;
+  padding: 8px 10px;
+  border: 1px solid color-mix(in oklab, var(--chat-primary) 28%, var(--chat-line));
+  border-radius: 7px;
+  background: color-mix(in oklab, var(--accent) 55%, var(--card));
+  color: var(--chat-ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  text-align: left;
+  transition:
+    background 120ms ease,
+    border-color 120ms ease;
+}
+
+.varsity-chat__suggestions button:hover {
+  border-color: var(--chat-primary);
+  background: var(--accent);
+}
+
+.varsity-chat__typing {
+  display: flex;
+  min-width: 58px;
+  align-items: center;
+  gap: 4px;
+}
+
+.varsity-chat__typing i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--chat-primary);
+  animation: varsity-chat-pulse 900ms ease-in-out infinite alternate;
+}
+
+.varsity-chat__typing i:nth-child(2) {
+  animation-delay: 140ms;
+}
+
+.varsity-chat__typing i:nth-child(3) {
+  animation-delay: 280ms;
+}
+
+.varsity-chat__composer-wrap {
+  padding: 12px 14px 10px;
+  border-top: 1px solid var(--chat-line);
+  background: var(--card);
+}
+
+.varsity-chat__composer {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 5px 5px 13px;
+  border: 1px solid var(--chat-line);
+  border-radius: 9px;
+  background: var(--card);
+  transition:
+    border-color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.varsity-chat__composer:focus-within {
+  border-color: var(--chat-primary);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--chat-primary) 18%, transparent);
+}
+
+.varsity-chat__composer input {
+  width: 0;
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--chat-ink);
+  font: inherit;
+  font-size: 12px;
+}
+
+.varsity-chat__composer input::placeholder {
+  color: var(--chat-muted);
+}
+
+.varsity-chat__composer > button {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 0;
+  border-radius: 7px;
+  background: var(--chat-primary);
+  color: var(--primary-foreground);
+  cursor: pointer;
+  transition:
+    background 120ms ease,
+    opacity 120ms ease;
+}
+
+.varsity-chat__composer > button:hover:not(:disabled) {
+  background: var(--chat-ink);
+}
+
+.varsity-chat__composer > button:disabled {
+  cursor: default;
+  opacity: 0.42;
+}
+
+.varsity-chat__disclaimer {
+  margin: 8px 0 0;
+  color: var(--chat-muted);
+  font-size: 9px;
+  text-align: center;
+}
+
+.varsity-chat__error {
+  margin: 0 0 8px;
+  color: oklch(0.48 0.17 28);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.varsity-chat__launcher {
+  display: flex;
+  min-width: 58px;
+  height: 58px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 19px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--chat-ink);
+  box-shadow: var(--shadow-md);
+  color: var(--primary-foreground);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  transition:
+    transform 140ms ease,
+    background 140ms ease;
+}
+
+.varsity-chat__launcher:hover {
+  transform: translateY(-2px);
+  background: var(--chat-primary);
+}
+
+.varsity-chat__launcher--open {
+  width: 50px;
+  min-width: 50px;
+  height: 50px;
+  margin-left: auto;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--chat-primary);
+}
+
+@keyframes varsity-chat-enter {
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes varsity-chat-pulse {
+  from {
+    opacity: 0.4;
+    transform: translateY(1px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+@media (max-width: 520px) {
+  .varsity-chat {
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .varsity-chat__panel {
+    right: -7px;
+    bottom: 66px;
+    width: min(390px, calc(100vw - 20px));
+    height: min(650px, calc(100dvh - 96px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .varsity-chat *,
+  .varsity-chat *::before,
+  .varsity-chat *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
